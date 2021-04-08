@@ -12,13 +12,12 @@
 		},
 		data() {
 			return {
-			}
-		},
-		onLoad() {
 
+		    }
 		},
 		methods: {
 			
+
 		}
 	}
 </script>
@@ -28,6 +27,6 @@
 		width: 100%;
 		height: calc(100vh - 94px);
 		background-color: #F1F1F1;
-		
 	}
+
 </style>
