@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "guider": "/components/guider/guider",
+    "guider-right": "/components/guider/guiderRight"
+  }
+}

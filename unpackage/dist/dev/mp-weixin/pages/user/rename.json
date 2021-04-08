@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "更改昵称",
+  "usingComponents": {
+    "quick-message": "/components/quick-message/quick-message"
+  }
+}

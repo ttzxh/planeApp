@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "登陆",
+  "usingComponents": {
+    "quick-message": "/components/quick-message/quick-message"
+  }
+}

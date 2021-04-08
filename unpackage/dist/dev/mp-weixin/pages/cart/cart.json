@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "预定",
+  "usingComponents": {
+    "jian-tou": "/components/jiantou/jiantou"
+  }
+}

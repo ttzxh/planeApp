@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/user",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/user/rename",
+    "pages/cart/cart",
+    "pages/cart/calc",
+    "pages/manager/manager",
+    "pages/manager/plane",
+    "pages/order/order",
+    "pages/order/orderDetail"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/飞机.png",
+        "selectedIconPath": "static/飞机s.png",
+        "text": "机票"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "static/我的.png",
+        "selectedIconPath": "static/我的s.png",
+        "text": "我的"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "iconPath": "static/订单.png",
+        "selectedIconPath": "static/订单s.png",
+        "text": "订单"
+      }
+    ]
+  },
+  "usingComponents": {
+    "quick-message": "/components/quick-message/quick-message"
+  }
+}

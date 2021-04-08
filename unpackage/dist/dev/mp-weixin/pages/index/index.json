@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "usingComponents": {
+    "index-item": "/components/indexItem/indexItem"
+  }
+}

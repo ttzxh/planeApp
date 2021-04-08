@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "购买",
+  "usingComponents": {
+    "quick-message": "/components/quick-message/quick-message"
+  }
+}

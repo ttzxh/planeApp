@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的",
+  "usingComponents": {
+    "wyb-popup": "/components/wyb-popup/wyb-popup"
+  }
+}

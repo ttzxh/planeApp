@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "用户管理",
+  "usingComponents": {
+    "wyb-popup": "/components/wyb-popup/wyb-popup"
+  }
+}
