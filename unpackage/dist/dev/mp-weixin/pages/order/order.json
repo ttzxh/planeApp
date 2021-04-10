@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "订单",
   "usingComponents": {
+    "quick-message": "/components/quick-message/quick-message",
     "jian-tou": "/components/jiantou/jiantou"
   }
 }

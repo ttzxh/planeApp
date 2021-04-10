@@ -93,6 +93,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    quickMessage: function() {
+      return Promise.all(/*! import() | components/quick-message/quick-message */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/quick-message/quick-message")]).then(__webpack_require__.bind(null, /*! @/components/quick-message/quick-message.vue */ 87))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -199,6 +222,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 {
   components: {
     jianTou: jianTou },
@@ -206,10 +230,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       cartList: [
-      { plane: "xxx", id: 0, num: 120, ifchoose: true },
-      { plane: "xxx", id: 1, num: 140, ifchoose: true },
-      { plane: "xxx", id: 2, num: 200, ifchoose: true },
-      { plane: "xxx", id: 3, num: 330, ifchoose: false }] };
+      { planeName: "G11", planeId: "123", startPlace: "武汉", endPlace: "成都", ticket: 122, num: 500, time: new Date().getTime() + "", spend: "1000000", ifchoose: false },
+      { planeName: "G11", planeId: "124", startPlace: "武汉", endPlace: "成都", ticket: 122, num: 500, time: new Date().getTime() + "", spend: "1000000", ifchoose: false },
+      { planeName: "G11", planeId: "125", startPlace: "武汉", endPlace: "成都", ticket: 122, num: 500, time: new Date().getTime() + "", spend: "1000000", ifchoose: false },
+      { planeName: "G11", planeId: "126", startPlace: "武汉", endPlace: "成都", ticket: 122, num: 500, time: new Date().getTime() + "", spend: "1000000", ifchoose: false },
+      { planeName: "G11", planeId: "127", startPlace: "武汉", endPlace: "成都", ticket: 122, num: 500, time: new Date().getTime() + "", spend: "1000000", ifchoose: false }] };
+
 
 
   },
@@ -221,6 +247,11 @@ __webpack_require__.r(__webpack_exports__);
       return this.cartList.reduce(function (pre, cur) {
         return pre + (cur.ifchoose ? cur.num : 0);
       }, 0);
+    },
+    planeTime: function planeTime() {
+      return function (val) {
+
+      };
     } },
 
   methods: {
@@ -231,6 +262,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     cancel: function cancel() {
       //取消操作 从storage中删除该项
+      this.$refs.message.show({
+        msg: '退订成功',
+        customStyle: { //自定义样式
+          color: '#007AFF' //字体图标色
+        } });
+
+
     },
     changeifAllChoose: function changeifAllChoose() {
       if (this.ifAll) {
@@ -245,7 +283,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeifChoose: function changeifChoose(item) {
       this.cartList.forEach(function (items) {
-        if (items.id === item) {
+        if (items.planeId === item) {
           items.ifchoose = !items.ifchoose;
         }
       });

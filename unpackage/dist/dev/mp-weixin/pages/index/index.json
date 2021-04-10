@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "uni-app",
   "usingComponents": {
+    "quick-message": "/components/quick-message/quick-message",
     "index-item": "/components/indexItem/indexItem"
   }
 }

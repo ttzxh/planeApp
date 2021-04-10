@@ -93,10 +93,55 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    quickMessage: function() {
+      return Promise.all(/*! import() | components/quick-message/quick-message */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/quick-message/quick-message")]).then(__webpack_require__.bind(null, /*! @/components/quick-message/quick-message.vue */ 87))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.orderList, function(item, __i0__) {
+    var $orig = _vm.__get_orig(item)
+
+    var m0 = _vm.startTime(item.time)
+    var m1 = _vm.spendTime(item.spend)
+    var m2 = _vm.endTime(item.time, item.spend)
+    return {
+      $orig: $orig,
+      m0: m0,
+      m1: m1,
+      m2: m2
+    }
+  })
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -175,20 +220,57 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
 {
   components: {
     jianTou: jianTou },
 
+  computed: {
+    spendTime: function spendTime() {
+      return function (val) {
+        return (val / 1000 / 60).toFixed(1) + "分钟";
+      };
+    },
+    startTime: function startTime() {
+      return function (val) {
+        var h = new Date(parseInt(val)).getHours();
+        var m = new Date(parseInt(val)).getMinutes();
+        m = m >= 10 ? m : 0 + m;
+        return h + ":" + m;
+      };
+    },
+    endTime: function endTime() {
+      return function (val, spendVal) {
+        var h = new Date(parseInt(val) + parseInt(spendVal)).getHours();
+        var m = new Date(parseInt(val) + parseInt(spendVal)).getMinutes();
+        m = m >= 10 ? m : 0 + m;
+        return h + ":" + m;
+      };
+    } },
+
   data: function data() {
     return {
       orderList: [
-      { plane: "xxx", id: 0 },
-      { plane: "xxx1", id: 1 },
-      { plane: "xxx2", id: 2 },
-      { plane: "xxx3", id: 3 }] };
+      { planeName: "G11", planeId: "123", startPlace: "武汉", endPlace: "成都", ticket: 122, num: 500, time: new Date().getTime() + "", spend: "1000000", orderId: "111231231" },
+      { planeName: "G11", planeId: "124", startPlace: "武汉", endPlace: "成都", ticket: 122, num: 500, time: new Date().getTime() + "", spend: "1000000", orderId: "11" },
+      { planeName: "G11", planeId: "125", startPlace: "武汉", endPlace: "成都", ticket: 122, num: 500, time: new Date().getTime() + "", spend: "1000000", orderId: "11" },
+      { planeName: "G11", planeId: "126", startPlace: "武汉", endPlace: "成都", ticket: 122, num: 500, time: new Date().getTime() + "", spend: "1000000", orderId: "11" },
+      { planeName: "G11", planeId: "127", startPlace: "武汉", endPlace: "成都", ticket: 122, num: 500, time: new Date().getTime() + "", spend: "1000000", orderId: "11" }] };
 
 
-  } };exports.default = _default;
+
+  },
+  methods: {
+    verb: function verb() {
+      this.$refs.message.show({
+        msg: '退款申请已发送',
+        customStyle: { //自定义样式
+          color: '#F0AD4E' //字体图标色
+        } });
+
+    } } };exports.default = _default;
 
 /***/ }),
 

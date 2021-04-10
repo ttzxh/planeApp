@@ -84,6 +84,7 @@
   padding: 0 10px;
 }
 .order-item-footer.data-v-127632e4 {
+  margin-top: 5px;
   width: 100%;
   height: 35px;
   display: -webkit-box;

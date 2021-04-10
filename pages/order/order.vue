@@ -4,57 +4,95 @@
 			<view v-for="item in orderList" :key="item.id">
 				<view class="order-item">
 					<view class="order-item-header">
-						<view>{{item.plane}}</view>
+						<view>{{item.planeName+"："}}{{item.planeId}}</view>
 						<view>2102-1-1</view>
 					</view>
 					<view class="order-item-content">
 						<view class="order-item-content-left">
 							<view>
-								<view style="font-size: 23px;color: #F0AD4E;">15:00</view>
-								<view>武汉</view>
+								<view style="font-size: 20px;color: #F0AD4E;">{{startTime(item.time)}}</view>
+								<view>{{item.startPlace}}</view>
 							</view>
 							<jianTou style="flex-basis: 200upx;margin-bottom: 20px;">
-								12时5分
+								{{spendTime(item.spend)}}
 							</jianTou>
 							<view>
-								<view style="font-size: 23px;color: #F0AD4E;">15:00</view>
-								<view>武汉</view>
+								<view style="font-size: 20px;color: #F0AD4E;">{{endTime(item.time,item.spend)}}</view>
+								<view>{{item.endPlace}}</view>
 							</view>
 						</view>
 						<view class="order-item-content-right">
-							<view>
-								¥88
+							<view style="color: #DD524D;font-size: 20px;">
+							¥{{item.num}}
 							</view>
 							<view>
-								1张
+								{{item.ticket}}张
 							</view>
 						</view>
 					</view>
 					<view class="order-item-footer">
-						11111111111111111
-						<button type="default" size="mini" plain>再次购买</button>
-					<button type="warn" size="mini" plain>申请退款</button>
-					</view>
+						<view style="padding-top: 15px;">订单编号：{{item.orderId}}</view>
+						<view>
+							<button type="warn" size="mini" plain @tap="verb(item)">申请退款</button>
+						</view>
+						</view>
 				</view>
 			</view>
 		</view>
+		<quick-message ref="message"></quick-message>
 	</view>
 </template>
 
 <script>
 	import jianTou from "../../components/jiantou/jiantou.vue"
+	
 	export default{
 		components:{
 				jianTou
 		},
+		computed:{
+				spendTime(){
+					return function(val){
+						return (val/1000/60).toFixed(1)+"分钟"
+					}
+				},
+				startTime(){
+					return function(val){
+						let h = new Date(parseInt(val)).getHours()
+						let m = new Date(parseInt(val)).getMinutes()
+						m=m>=10?m:0+m
+						return h+":"+m
+					}
+				},
+				endTime(){
+					return function(val,spendVal){
+						let h = new Date(parseInt(val)+parseInt(spendVal)).getHours()
+						let m = new Date(parseInt(val)+parseInt(spendVal)).getMinutes()
+						m=m>=10?m:0+m
+						return h+":"+m
+					}
+				}
+		},
 		data(){
 			return {
 				orderList:[
-					{plane:"xxx",id:0},
-					{plane:"xxx1",id:1},
-					{plane:"xxx2",id:2},
-					{plane:"xxx3",id:3}
+					{planeName:"G11",planeId:"123",startPlace:"武汉",endPlace:"成都",ticket:122,num:500,time:(new Date().getTime())+"",spend:"1000000",orderId:"111231231"},
+					{planeName:"G11",planeId:"124",startPlace:"武汉",endPlace:"成都",ticket:122,num:500,time:(new Date().getTime())+"",spend:"1000000",orderId:"11"},
+					{planeName:"G11",planeId:"125",startPlace:"武汉",endPlace:"成都",ticket:122,num:500,time:(new Date().getTime())+"",spend:"1000000",orderId:"11"},
+					{planeName:"G11",planeId:"126",startPlace:"武汉",endPlace:"成都",ticket:122,num:500,time:(new Date().getTime())+"",spend:"1000000",orderId:"11"},
+					{planeName:"G11",planeId:"127",startPlace:"武汉",endPlace:"成都",ticket:122,num:500,time:(new Date().getTime())+"",spend:"1000000",orderId:"11"}
+									
 				]
+			}
+		},
+		methods:{
+			verb(){
+				this.$refs.message.show({
+				        msg:'退款申请已发送',
+						customStyle:{ //自定义样式
+				     	color:'#F0AD4E', //字体图标色
+					 }, 
+				   })
 			}
 		}
 	}
@@ -101,6 +139,7 @@
 				}
 			}
 			&-footer{
+				margin-top: 5px;
 				width: 100%;
 				height: 35px;
 				display: flex;

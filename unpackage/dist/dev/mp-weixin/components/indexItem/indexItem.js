@@ -137,7 +137,10 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var guider = function guider() {__webpack_require__.e(/*! require.ensure | components/guider/guider */ "components/guider/guider").then((function () {return resolve(__webpack_require__(/*! ../guider/guider.vue */ 125));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var guiderRight = function guiderRight() {__webpack_require__.e(/*! require.ensure | components/guider/guiderRight */ "components/guider/guiderRight").then((function () {return resolve(__webpack_require__(/*! ../guider/guiderRight.vue */ 132));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var guider = function guider() {__webpack_require__.e(/*! require.ensure | components/guider/guider */ "components/guider/guider").then((function () {return resolve(__webpack_require__(/*! ../guider/guider.vue */ 125));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var guiderRight = function guiderRight() {__webpack_require__.e(/*! require.ensure | components/guider/guiderRight */ "components/guider/guiderRight").then((function () {return resolve(__webpack_require__(/*! ../guider/guiderRight.vue */ 132));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
 
 
 
@@ -177,16 +180,73 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     guider: guider,
     guiderRight: guiderRight },
 
+  props: {
+    planeName: {
+      type: String,
+      default: "" },
+
+
+    planeId: {
+      type: String,
+      default: "" },
+
+    startPlace: {
+      type: String,
+      default: "" },
+
+    endPlace: {
+      type: String,
+      default: "" },
+
+    ticket: {
+      type: Number,
+      default: 0 },
+
+    num: {
+      type: Number,
+      default: 0 },
+
+    time: {
+      type: String,
+      default: "" },
+
+    spend: {
+      type: String,
+      default: "" } },
+
+
+
   data: function data() {
-    return {
-      ticket: 122,
-      num: 500 };
+    return {};
 
   },
   onLoad: function onLoad() {
 
   },
-  methods: {} };exports.default = _default;
+  computed: {
+    spendTime: function spendTime() {
+      return (this.spend / 1000 / 60).toFixed(2) + "分钟";
+    },
+    startTime: function startTime() {
+      var h = new Date(parseInt(this.time)).getHours();
+      var m = new Date(parseInt(this.time)).getMinutes();
+      m = m >= 10 ? m : 0 + m;
+      return h + ":" + m;
+    },
+    endTime: function endTime() {
+      var h = new Date(parseInt(this.time) + parseInt(this.spend)).getHours();
+      var m = new Date(parseInt(this.time) + parseInt(this.spend)).getMinutes();
+      m = m >= 10 ? m : 0 + m;
+      return h + ":" + m;
+    } },
+
+  methods: {
+    order: function order() {
+      //将当前飞机的信息存入storage中
+      uni.setStorageSync("cartInfo", { planeName: this.planeName });
+      this.$emit("orderSucc");
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

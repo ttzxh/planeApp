@@ -29,4 +29,7 @@
   height: calc(100vh - 94px);
   background-color: #F1F1F1;
 }
+.index-item.data-v-57280228 {
+  margin-bottom: 10px;
+}
 

@@ -4,13 +4,13 @@
 			<view v-for="item in cartList" :key="item.id">
 				<view class="cart-item">
 					<view class="cart-item-header" >
-							<checkbox-group @change="changeifChoose(item.id)">
+							<checkbox-group @change="changeifChoose(item.planeId)">
 								<label>
 									<checkbox :checked="item.ifchoose" /><text></text>
 								</label>
 							</checkbox-group>
-							<view style="color: #999999">2021-1-1</view>
-						<view>{{item.plane}}</view>
+							<view style="color: #999999">{{item.time}}</view>
+						<view>{{item.planeName}}</view>
 					</view>
 					<view class="cart-item-content">
 						<view class="cart-item-content-left">
@@ -28,16 +28,16 @@
 						</view>
 						<view class="cart-item-content-right">
 							<view style="font-size: 25px;color: #F0AD4E;">
-								¥88
+								¥{{item.num*item.ticket}}
 							</view>
 							<view>
-								2张
+								{{item.ticket}}张
 							</view>
 						</view>
 					</view>
 					<view class="cart-item-footer">
-						<text style="margin-right: 170upx;">
-							11111111
+						<text style="margin-right: 270upx;">
+							{{item.planeId}}
 						</text>
 						<button type="primary" size="mini" plain @tap="goBuy">去结算</button>
 						<button type="warn" size="mini" plain @tap="cancel">退订</button>
@@ -62,6 +62,7 @@
 				<button type="primary" :disabled="allMoney===0" @tap="goBuy">结算</button>
 			</view>
 		</view>
+		<quick-message ref="message"></quick-message>
 	</view>
 </template>
 
@@ -74,10 +75,12 @@
 		data(){
 			return {
 				cartList:[
-						{plane:"xxx",id:0,num:120,ifchoose:true},
-						{plane:"xxx",id:1,num:140,ifchoose:true},
-						{plane:"xxx",id:2,num:200,ifchoose:true},
-						{plane:"xxx",id:3,num:330,ifchoose:false}
+						{planeName:"G11",planeId:"123",startPlace:"武汉",endPlace:"成都",ticket:122,num:500,time:(new Date().getTime())+"",spend:"1000000",ifchoose:false},
+						{planeName:"G11",planeId:"124",startPlace:"武汉",endPlace:"成都",ticket:122,num:500,time:(new Date().getTime())+"",spend:"1000000",ifchoose:false},
+						{planeName:"G11",planeId:"125",startPlace:"武汉",endPlace:"成都",ticket:122,num:500,time:(new Date().getTime())+"",spend:"1000000",ifchoose:false},
+						{planeName:"G11",planeId:"126",startPlace:"武汉",endPlace:"成都",ticket:122,num:500,time:(new Date().getTime())+"",spend:"1000000",ifchoose:false},
+						{planeName:"G11",planeId:"127",startPlace:"武汉",endPlace:"成都",ticket:122,num:500,time:(new Date().getTime())+"",spend:"1000000",ifchoose:false}
+								
 					]
 			}
 		},
@@ -89,6 +92,11 @@
 					return this.cartList.reduce((pre,cur)=>{
 						return pre+(cur.ifchoose?cur.num:0)
 					},0)
+				},
+				planeTime(){
+					return function(val){
+						
+					}
 				}
 		},
 		methods:{
@@ -99,6 +107,13 @@
 			},
 			cancel(){
 				//取消操作 从storage中删除该项
+				this.$refs.message.show({
+				        msg:'退订成功',
+						customStyle:{ //自定义样式
+				     	color:'#007AFF', //字体图标色
+					 }, 
+				   })
+				
 			},
 			changeifAllChoose(){
 			if(this.ifAll){
@@ -113,7 +128,7 @@
 			},
 			changeifChoose(item){
 				this.cartList.forEach(items=>{
-					if(items.id === item){
+					if(items.planeId === item){
 						items.ifchoose = !items.ifchoose
 					}
 				})
